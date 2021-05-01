@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import Header from "./modules/Header";
-import { Home, Cart, SignUp, Login, Contact, About, TCs, Page404, PasswordReset } from "./Pages";
+import { Home, Cart, Checkout, SignUp, Login, Contact, About, TCs, Page404, PasswordReset } from "./Pages";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 
 //todo: get product data from database, and parse them to components
@@ -25,6 +25,7 @@ const App = () => {
           <Switch>
             <Route path='/' exact component={Home} />
             <Route path='/cart' exact component={Cart} />
+            <Route path='/checkout' exact component={Checkout} />
             <Route path='/signup' exact component={SignUp} />
             <Route path='/login' exact component={Login} />
             <Route path='/contact' exact component={Contact} />

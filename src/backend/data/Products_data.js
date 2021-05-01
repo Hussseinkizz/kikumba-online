@@ -10,39 +10,45 @@ import Image6 from '../../static/media/images/shoe/sh10.jpg';
 const Products = [
   {
     'id' : 1,
+    'quantity' : 1,
     'name' : 'Nike Blur',
     'image' : Image1,
-    'price' : '47,000'
+    'price' : 47000
   },
   {
     'id' : 2,
+    'quantity' : 1,
     'name' : 'Multi Color',
     'image' : Image2,
-    'price' : '35,000'
+    'price' : 35000
   },
   {
     'id' : 3,
+    'quantity' : 1,
     'name' : 'Lofers Leathal',
     'image' : Image3,
-    'price' : '77,000 All'
+    'price' : 77000
   },
   {
     'id' : 4,
+    'quantity' : 1,
     'name' : 'Converse',
     'image' : Image4,
-    'price' : '40,000'
+    'price' : 40000
   },
   {
     'id' : 5,
+    'quantity' : 1,
     'name' : 'Adidas SPLY',
     'image' : Image5,
-    'price' : '60,000'
+    'price' : 60000
   },
   {
     'id' : 6,
+    'quantity' : 1,
     'name' : 'Wave Runner',
     'image' : Image6,
-    'price' : '50,000'
+    'price' : 50000
   }
 ]
 

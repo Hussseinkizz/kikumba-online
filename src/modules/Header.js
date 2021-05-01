@@ -1,10 +1,12 @@
 import * as IoIcons from 'react-icons/io5'
 import { Link } from 'react-router-dom'
+import { useStateValue } from '../hooks/StateProvider'
 import NavOptions from './NavOptions'
 
 //todo: if user is logged in, show the user photo else take user to signup
 
 const Header = ({ toggleNav, closeNav, navState }) => {
+  const [{ cart }, dispatch] = useStateValue()
 
   return (
     <>
@@ -23,7 +25,9 @@ const Header = ({ toggleNav, closeNav, navState }) => {
           <span className='relative'>
           <Link to='/cart' onClick={closeNav}>
             <IoIcons.IoCart className='w-6 h-6 icon'/>
-            <span className='absolute px-1 text-xs text-gray-900 bg-yellow-300 rounded-full -right-1 -top-1'>1</span></Link>
+            <span className='absolute px-1 text-xs text-gray-900 bg-yellow-300 rounded-full -right-1 -top-1'>
+              {cart?.length}
+            </span></Link>
           </span>
           <span>
           <Link to='/signup' onClick={closeNav}>            

@@ -8,6 +8,7 @@ const Home = () => {
       Data.map((product, index) => (
       <ProductCard key={index}
       productId = {product.id}
+      productQty = {product.quantity}
       productName = {product.name}
       productImage = {product.image}
       productPrice = {product.price}

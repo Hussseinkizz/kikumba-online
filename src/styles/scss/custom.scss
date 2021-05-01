@@ -1,4 +1,6 @@
 // some few off the shelf rules
+$ts: 1px 1px 10px rgba(#2a3540, 0.4); /* text-shadow */
+$gray-100: #f3f4f6;
 
 .image-bg {
   background-image: url('../../static/media//images/models/b2.jpg');
@@ -9,3 +11,38 @@
 .text-font {
   font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
 }
+
+// pseudo settings & we could change these surely...
+
+html::-webkit-scrollbar {
+  width: 12px;
+  height: 6px;
+  background-color: #eff1f5;
+}
+
+
+html::-webkit-scrollbar-track {
+    // border-radius: 3px;
+    background-color: transparent;
+  }
+  
+html::-webkit-scrollbar-thumb {
+    // border-radius: 12px;
+    height: 6px;
+    background-color: #b2b4b6;
+    border: 2px solid #eff1f5;
+
+    &:hover {
+      background-color: #a7aaad;
+    }
+  }
+    
+::selection {
+  background-color: $gray-100;
+  text-shadow: $ts;
+  border-radius: 4px;
+}
+
+// :-webkit-tap-highlight-color {
+//   color: rgba(0, 0, 0, 0.2);
+// }

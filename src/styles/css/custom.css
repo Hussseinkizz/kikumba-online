@@ -1,3 +1,4 @@
+/* text-shadow */
 .image-bg {
   background-image: url("../../static/media//images/models/b2.jpg");
   background-size: cover;
@@ -6,4 +7,35 @@
 
 .text-font {
   font-family: Cambria, Cochin, Georgia, Times, "Times New Roman", serif;
+}
+
+html::-webkit-scrollbar {
+  width: 12px;
+  height: 6px;
+  background-color: #eff1f5;
+}
+
+html::-webkit-scrollbar-track {
+  background-color: transparent;
+}
+
+html::-webkit-scrollbar-thumb {
+  height: 6px;
+  background-color: #b2b4b6;
+  border: 2px solid #eff1f5;
+}
+html::-webkit-scrollbar-thumb:hover {
+  background-color: #a7aaad;
+}
+
+::-moz-selection {
+  background-color: #f3f4f6;
+  text-shadow: 1px 1px 10px rgba(42, 53, 64, 0.4);
+  border-radius: 4px;
+}
+
+::selection {
+  background-color: #f3f4f6;
+  text-shadow: 1px 1px 10px rgba(42, 53, 64, 0.4);
+  border-radius: 4px;
 }
