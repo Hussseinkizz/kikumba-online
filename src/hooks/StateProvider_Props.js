@@ -62,38 +62,38 @@ const reducer = (state, action) => {
       }
 
       // controlling selected item quantity
-      //todo: look for the right way to do this please!
+      //todo: look for the better way to do this please!
       case 'INCREASE_QTY':
-      const qtyIndex = state.cart.findIndex(
-        cartItem => cartItem.id === action.id
-      )
-  
-      // when incrementing item quantity, update item price in cart based on qty
-      let qtyCart = [...state.cart]
-        ++qtyCart[qtyIndex].quantity
-        qtyCart[qtyIndex].price  *= qtyCart[qtyIndex].quantity // mabe like so
 
       return {
-        ...state,
-        cart: qtyCart
-      } 
-      
-      case 'DECREASE_QTY':
-      const qtyIndex2 = state.cart.findIndex(
-        cartItem => cartItem.id === action.id
-      )
+        cart: state.cart.map(cartItem => 
+          cartItem.id === action.id ? {...cartItem, 
+            quantity : cartItem.quantity + 1, 
+            price : cartItem.price * cartItem.quantity} : cartItem
+            )
+          }
 
-      let qtyCart2 = [...state.cart]
-      --qtyCart2[qtyIndex2].quantity
-      qtyCart[qtyIndex].price  *= qtyCart[qtyIndex].quantity // mabe like so
+          
+          case 'DECREASE_QTY':
+            
+            return {
+              cart: state.cart.map(cartItem => 
+                cartItem.id === action.id ? {...cartItem, 
+                  quantity : cartItem.quantity - 1, 
+                  price : cartItem.price * cartItem.quantity} : cartItem
+                  )
+                }
 
-      return {
-        ...state,
-        cart: qtyCart2
-      }
+                case 'UPDATE_PRICE':
+          
+                return {
+                  cart: state.cart.map(cartItem => 
+                    cartItem.id === action.id ? {...cartItem, 
+                      price : cartItem.price * cartItem.quantity} : cartItem
+                      )
+                    }
 
       // removing all from cart
-      //todo: look for an optimal way to do this
       case 'EMPTY_CART':
         let emptyCart = []
       return {

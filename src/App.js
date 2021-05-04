@@ -14,7 +14,7 @@ const App = () => {
 
   return (
     <Router>
-    <div id="app" className="font-sans cursor-pointer h-screen">
+    <div id="app" className="cursor-pointer h-screen font-sans">
       <Header 
       toggleNav={() => setShowNav(!showNav)}
       closeNav={hideNav}

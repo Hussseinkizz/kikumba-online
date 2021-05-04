@@ -1,6 +1,24 @@
+import { useStateValue } from '../../../hooks/StateProvider';
+import { getCartTotal } from '../../../hooks/StateProvider_Props';
+import { formatCurrency } from '../../../modules/formatCurrency';
 import CartProductCard from './CartProductCard';
 
-const CartFilled = ({ cart, emptyCart, history, total }) => {
+const CartFilled = ({ history }) => {
+  const [{ cart }, dispatch] = useStateValue();
+
+  //todo: remove this after implementing commerce.js api
+  let total = getCartTotal(cart)
+
+  // formatting product prices
+  const formattedTotal = formatCurrency(total)
+
+  // remove all items from cart
+  const emptyCart = () => {
+    dispatch({
+      type: 'EMPTY_CART'
+    })
+  }
+
   return (
     <>
       <h1 className="flex justify-center w-full text-3xl font-bold text-gray-800 uppercase md:text-4xl lg:text-5xl">
@@ -14,14 +32,14 @@ const CartFilled = ({ cart, emptyCart, history, total }) => {
             productQty={cartItem.quantity}
             productName={cartItem.name}
             productImage={cartItem.image}
-            productPrice={cartItem.price}
+            productPrice={formatCurrency(cartItem.price)}
           />
         ))}
       </section>
       <section className="w-full gap-6 p-4 space-y-3 md:grid md:grid-cols-2 lg:grid-cols-3 md:space-y-0">
         <div className="block w-full px-2 py-1 space-x-2 font-bold text-center text-white bg-gray-900 rounded md:inline-block">
           <span>Total Pricing</span>
-          <span>{total}</span>
+          <span>{formattedTotal}</span>
         </div>
         <button className="block text-gray-900 bg-red-300 btn hover:bg-red-400 focus:bg-red-500"
         onClick={emptyCart}>
