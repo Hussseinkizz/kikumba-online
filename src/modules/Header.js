@@ -1,12 +1,30 @@
 import * as IoIcons from 'react-icons/io5'
 import { Link } from 'react-router-dom'
-import { useStateValue } from '../hooks/StateProvider'
-import NavOptions from './NavOptions'
+import { useDispatch, useStore } from '../states/clientState/StoreProvider';
+import NavMenu from './NavMenu'
 
 //todo: if user is logged in, show the user photo else take user to signup
 
-const Header = ({ toggleNav, closeNav, navState }) => {
-  const [{ cart }, dispatch] = useStateValue()
+const Header = () => {
+  const dispatch = useDispatch();
+  const { showMenu, cart } = useStore();
+
+  console.log(cart)
+
+  const hideMenu = () => {
+    dispatch({
+      type: 'HIDE_MENU'
+    })
+  }
+  const toggleMenu = () => {
+    dispatch({
+      type: 'TOGGLE_MENU'
+    })
+  }
+
+  //todo remove this later
+  // hide menu
+  // toggle menu
 
   return (
     <>
@@ -23,26 +41,26 @@ const Header = ({ toggleNav, closeNav, navState }) => {
         </div>
         <div className='flex space-x-2'>
           <span className='relative'>
-          <Link to='/cart' onClick={closeNav}>
+          <Link to='/cart' onClick={hideMenu}>
             <IoIcons.IoCart className='w-6 h-6 icon'/>
             <span className='absolute px-1 text-xs text-gray-900 bg-yellow-300 rounded-full -right-1 -top-1'>
-              {cart?.length}
+              {cart?.total_items ?? '0'}
             </span></Link>
           </span>
           <span>
-          <Link to='/signup' onClick={closeNav}>            
+          <Link to='/signup' onClick={hideMenu}>            
             <IoIcons.IoPersonCircle className='w-6 h-6 icon'/>
           </Link>
           </span>
           <span>
             <IoIcons.IoEllipsisVertical className='w-6 h-6 icon' 
-            onClick={toggleNav}/>
+            onClick={toggleMenu}/>
           </span>
         </div>
       </nav>
     </header>
     <div id='spacer' className='w-full h-12'/>
-    {navState && <NavOptions onSelect={closeNav}/>}
+    {showMenu && <NavMenu onSelect={hideMenu}/>}
     </>
   )
 }

@@ -1,6 +1,6 @@
 /* text-shadow */
 .image-bg {
-  background-image: url("../../static/media//images/models/b2.jpg");
+  background-image: url("../../assets/media/images/models/b2.jpg");
   background-size: cover;
   background-blend-mode: soft-light;
 }

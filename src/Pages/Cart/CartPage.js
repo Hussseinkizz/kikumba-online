@@ -1,21 +1,24 @@
-import { useHistory } from "react-router-dom";
-import { useStateValue } from "../../hooks/StateProvider";
-import CartFilled from "./components/CartFilled";
-import CartEmpty from "./components/CartEmpty";
-
-// empty cart
+import { useCart } from "../../hooks/useFetchHooks";
+import { ErrorUI, FetchUI, LoaderUI } from "../../modules/StateModules";
+import CartUI from "./CartUI";
 
 const CartPage = () => {
-const [{ cart }] = useStateValue();
+  const { status, data, error, isFetching } = useCart();
 
-  let history = useHistory();
-
-  return (
-    <section className="p-2 grid place-items-center">
-    { (cart.length > 0) ? 
-    <CartFilled history={history} /> : <CartEmpty history={history}/> }
-    </section>
-  );
-};
+    switch (status) {
+      case "loading":
+        return <LoaderUI />;
+  
+      case "error":
+        return <ErrorUI error={error}/>
+  
+      case "success":
+        return <CartUI cart={data}/>
+  
+      default:
+        return <FetchUI fetching={isFetching}/>
+  
+      }
+    }
 
 export default CartPage;

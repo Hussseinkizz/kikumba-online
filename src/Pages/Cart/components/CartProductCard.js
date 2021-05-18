@@ -1,11 +1,11 @@
 import PropTypes from 'prop-types'
 import * as IoIcons from 'react-icons/io5'
-import { useStateValue } from '../../../hooks/StateProvider';
+import { useDispatch } from '../../../states/clientState/StoreProvider';
 
 //todo: add states to remove from cart & add change quantity functionality
 
 const CartProductCard = ({ productId, productQty, productName, productImage, productPrice }) => {
-  const [, dispatch] = useStateValue()
+  const { dispatch } = useDispatch()
 
   // control item quantity
   const incrementQty = () => {

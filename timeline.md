@@ -1,19 +1,17 @@
 # Todos / priority
 
-> Remember to create .env file to hold public keys and in it put something like!
-> ```REACT_APP_PROVIDER_NAME_KEY = Public_Key```
-> This then can be refrenced as ```serviceProvider(REACT_APP_PROVIDER_NAME_KEY)```
+> fix issues with cart, and client state issues with the UI
+> else change to a simpler architecture like used by js mastery
 
 ## Urgents
 
-> add changes to git, publish to github and finally 
-> Install commerce js and peers and change everything to that backend
+> add changes to git, publish to github but all in a variant version *beta* 
 
 ## Knwon issues
 
-* Fix currency formats everwhere -- done
-* Fix quantity controls on cart items
-* Fix total pricing in cart page
+* Fix nav menu Ui
+* Fix wordmark not clickable
+* Fix lack of enough spacing in product design
 
 ### Next kanban
 
@@ -24,4 +22,4 @@
 * firebase integration
 * admin panel
 
-> idea: this project management needs a vs extension
+> idea: this project management needs a vs extension -- it exists 😦

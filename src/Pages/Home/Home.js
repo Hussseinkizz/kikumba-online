@@ -1,22 +1,26 @@
-import ProductCard from './components/ProductCard'
-import Data from '../../backend/data/Products_data'
+import { useProducts } from '../../hooks/useFetchHooks'
+import { ErrorUI, FetchUI, LoaderUI } from '../../modules/StateModules';
+import HomeUI from './HomeUI';
+
+// smart component --> Home
 
 const Home = () => {
-  return (
-    <section className='w-full gap-6 p-4 space-y-6 md:grid md:grid-cols-2 lg:grid-cols-3 md:space-y-0'>
-    {
-      Data.map((product, index) => (
-      <ProductCard key={index}
-      productId = {product.id}
-      productQty = {product.quantity}
-      productName = {product.name}
-      productImage = {product.image}
-      productPrice = {product.price}
-    />
-      ))
+  const { status, data, error, isFetching } = useProducts();
+
+    switch (status) {
+      case "loading":
+        return <LoaderUI />;
+  
+      case "error":
+        return <ErrorUI error={error}/>
+  
+      case "success":
+        return <HomeUI products={data}/>
+  
+      default:
+        return <FetchUI fetching={isFetching}/>
+  
+      }
     }
-    </section>
-  )
-}
 
 export default Home

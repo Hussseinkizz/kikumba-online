@@ -1,18 +1,19 @@
-import React from 'react';
-import ReactDOM from 'react-dom';
-import './index.css';
-import './styles/css/custom.css' // our custom css, off the tail
-import './static/fonts/font_styles.css' // our custom fonts
-import App from './App';
-import { StateProvider } from './hooks/StateProvider';
-import reducer, { initialState } from './hooks/StateProvider_Props';
-
+import App from "./App";
+import React from "react";
+import ReactDOM from "react-dom";
+import { StoreProvider } from "./states/clientState/StoreProvider";
+import { QueryProvider } from "./states/serverState/QueryProvider";
+import "./index.css";
+import "./styles/css/custom.css"; // our custom css, off the tail
+import "./assets/fonts/font_styles.css"; // our custom fonts
 
 ReactDOM.render(
   <React.StrictMode>
-  <StateProvider initialState={initialState} reducer={reducer}>
-    <App />
-  </StateProvider>
+    <QueryProvider>
+      <StoreProvider>
+        <App />
+      </StoreProvider>
+    </QueryProvider>
   </React.StrictMode>,
-  document.getElementById('root')
+  document.getElementById("root")
 );

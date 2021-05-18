@@ -1,27 +1,25 @@
-import React, { useState } from "react";
 import Header from "./modules/Header";
+import { useDispatch } from './states/clientState/StoreProvider'
 import { Home, Cart, Checkout, SignUp, Login, Contact, About, TCs, Page404, PasswordReset } from "./Pages";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 
 //todo: get product data from database, and parse them to components
 
 const App = () => {
-  const [showNav, setShowNav] = useState(false)
+  const dispatch = useDispatch();
 
-  const hideNav = () => {
-    showNav && setShowNav(showNav === false)
+  const hideMenu = () => {
+    dispatch({
+      type: 'HIDE_MENU'
+    })
   }
 
   return (
     <Router>
     <div id="app" className="cursor-pointer h-screen font-sans">
-      <Header 
-      toggleNav={() => setShowNav(!showNav)}
-      closeNav={hideNav}
-      navState={showNav}
-       />
+      <Header/>
       <main className="mt-6"
-      onClick={hideNav}>
+      onClick={hideMenu}>
           <Switch>
             <Route path='/' exact component={Home} />
             <Route path='/cart' exact component={Cart} />
