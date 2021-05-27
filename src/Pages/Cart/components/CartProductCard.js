@@ -1,95 +1,87 @@
-import PropTypes from 'prop-types'
-import * as IoIcons from 'react-icons/io5'
-import { useDispatch } from '../../../states/clientState/StoreProvider';
+import PropTypes from 'prop-types';
+import { useState } from 'react';
+import * as IoIcons from 'react-icons/io5';
+import * as BiIcons from 'react-icons/bi';
 
-//todo: add states to remove from cart & add change quantity functionality
+/**
+ *
+ *
+ * @param {*} { productId, productQty, productName, productImage, productPrice, updateQuantity, removeFromCart }
+ * @return {*}
+ */
 
-const CartProductCard = ({ productId, productQty, productName, productImage, productPrice }) => {
-  const { dispatch } = useDispatch()
+const CartProductCard = (props) => {
+  const [isRemoved, setIsRemoved] = useState(false);
 
-  // control item quantity
-  const incrementQty = () => {
-    dispatch({
-      type: 'INCREASE_QTY',
-      id: productId
-    })
-
-    // this is not optimal
-    dispatch({
-      type: 'UPDATE_PRICE',
-      id: productId
-    })
-  }
-
-  const decrementQty = () => {
-    dispatch({
-      type: 'DECREASE_QTY',
-      id: productId
-    })
-    
-    // this is not optimal
-    dispatch({
-      type: 'UPDATE_PRICE',
-      id: productId
-    })
-  }
-
-  // remove item from cart
-  const removeFromCart = () => {
-    dispatch({
-      type: 'REMOVE_FROM_CART',
-      id: productId
-    })
-  }
+  const handleRemove = () => {
+    props.removeFromCart(props.productId);
+    setIsRemoved(true);
+  };
 
   return (
-    <section className="w-full mx-auto overflow-hidden bg-gray-100 rounded-lg shadow-lg">
-      <div className="px-4 py-2">
-        <h1 className="flex justify-between text-xl font-bold text-gray-800 uppercase lg:text-3xl md:text-2xl">
-          <div>{productName}</div>
-          <div className='flex justify-between space-x-2 align-middle'>
-            <span>
-              <IoIcons.IoRemove className='hover:text-yellow-400 focus:text-yellow-500'
-                onClick={decrementQty}
-              />
-            </span>
-            <span>{productQty}</span>
-            <span>
-              <IoIcons.IoAdd className='hover:text-yellow-400 focus:text-yellow-500'
-                onClick={incrementQty}
-              />
-            </span>
-          </div>
-        </h1>
-      </div>
+      <section className="w-full mx-auto overflow-hidden bg-gray-100 rounded-lg shadow-lg">
+        <div className="px-4 py-2">
+          <h1 className="flex justify-between text-xl font-bold text-gray-800 uppercase lg:text-3xl md:text-2xl">
+            <div>{props.productName}</div>
+            <div className="flex justify-between space-x-2 align-middle">
+              <span>
+                <IoIcons.IoRemove
+                  className="hover:text-yellow-400 focus:text-yellow-500"
+                  onClick={() =>
+                    props.updateQuantity(props.productId, props.productQty - 1)
+                  }
+                />
+              </span>
+              <span>{props.productQty}</span>
+              <span>
+                <IoIcons.IoAdd
+                  className="hover:text-yellow-400 focus:text-yellow-500"
+                  onClick={() =>
+                    props.updateQuantity(props.productId, props.productQty + 1)
+                  }
+                />
+              </span>
+            </div>
+          </h1>
+        </div>
 
-      <img
-        className="object-cover w-full h-48 mt-2"
-        src={productImage}
-        alt={productName}
-      />
+        <img
+          className="object-cover w-full h-48 mt-2"
+          src={props.productImage}
+          alt={props.productName}
+        />
 
-      <div className="flex items-center justify-between px-4 py-2 bg-gray-900">
-        <h1 className="text-lg font-bold text-white">{productPrice}</h1>
-        <button className="px-2 py-1 text-xs font-semibold text-gray-900 uppercase transition-colors duration-200 transform bg-white rounded hover:bg-yellow-300 focus:outline-none"
-        onClick={removeFromCart}>
-          Remove
-        </button>
-      </div>
-    </section>
+        <div className="flex items-center justify-between px-4 py-2 bg-gray-900">
+          <h1 className="text-lg font-bold text-white">
+            UGX {props.productPrice}
+          </h1>
+          {isRemoved ? (
+            <button className="px-2 py-1 text-xs font-semibold text-gray-900 uppercase bg-white rounded focus:outline-none">
+              <BiIcons.BiLoaderAlt className="text-yellow-300 animate-spin" />
+            </button>
+          ) : (
+            <button
+              className="px-2 py-1 text-xs font-semibold text-gray-900 uppercase transition-colors duration-200 transform bg-white rounded hover:bg-yellow-300 focus:outline-none"
+              onClick={handleRemove}
+            >
+              Remove
+            </button>
+          )}
+        </div>
+      </section>
   );
 };
 
 CartProductCard.propTypes = {
   productName: PropTypes.string.isRequired,
   productImage: PropTypes.any.isRequired,
-  productPrice: PropTypes.string.isRequired
-}
+  productPrice: PropTypes.string.isRequired,
+};
 
 CartProductCard.defaultProps = {
   productName: 'Product Name?',
   productImage: 'Product Image?',
-  productPrice: 'Price?'
-}
+  productPrice: 'Price?',
+};
 
 export default CartProductCard;

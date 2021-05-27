@@ -1,11 +1,12 @@
-import App from "./App";
-import React from "react";
-import ReactDOM from "react-dom";
-import { StoreProvider } from "./states/clientState/StoreProvider";
-import { QueryProvider } from "./states/serverState/QueryProvider";
-import "./index.css";
-import "./styles/css/custom.css"; // our custom css, off the tail
-import "./assets/fonts/font_styles.css"; // our custom fonts
+import App from './App';
+import React from 'react';
+import ReactDOM from 'react-dom';
+import { StoreProvider } from './states/clientState/StoreProvider';
+import { QueryProvider } from './states/serverState/QueryProvider';
+import './index.css';
+import './styles/css/custom.css'; // our custom css, off the tail
+import './assets/libraries/font-awesome-animation.min.css'; // css helper lib
+import './assets/fonts/font_styles.css'; // our custom fonts
 
 ReactDOM.render(
   <React.StrictMode>
@@ -15,5 +16,5 @@ ReactDOM.render(
       </StoreProvider>
     </QueryProvider>
   </React.StrictMode>,
-  document.getElementById("root")
+  document.getElementById('root')
 );

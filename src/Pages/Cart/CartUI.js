@@ -1,18 +1,23 @@
-import { useHistory } from "react-router-dom";
-import CartFilled from './components/CartFilled'
-import CartEmpty from './components/CartEmpty'
+import { useHistory } from 'react-router-dom';
+import CartFilled from './components/CartFilled';
+import CartEmpty from './components/CartEmpty';
 
-const CartUI = ({ cart }) => {
+const CartUI = ({ handlers }) => {
   let history = useHistory();
+  
+  const { cart } = handlers;
 
   return (
     <>
-    <section className="p-2 grid place-items-center">
-    { (cart.length > 0) ? 
-    <CartFilled cart={cart} history={history} /> : <CartEmpty history={history}/> }
-    </section>
+      <section className="p-2 grid place-items-center">
+        {cart?.line_items?.length ? (
+          <CartFilled cart={cart} {...handlers} history={history} />
+        ) : (
+          <CartEmpty history={history} />
+        )}
+      </section>
     </>
-  )
-}
+  );
+};
 
-export default CartUI
+export default CartUI;

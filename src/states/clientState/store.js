@@ -1,5 +1,4 @@
 export const initialState = {
-  cart: {},
   showMenu: false,
   isFav: false,
   isAdded: false
@@ -7,7 +6,7 @@ export const initialState = {
 
 
 export const reducer = (state, action) => {
-  switch (action.type) {
+  switch (action.payload) {
     case 'SHOW_MENU':
       return {
         ...state,
@@ -32,12 +31,8 @@ export const reducer = (state, action) => {
         isAdded: !state.isAdded
       } 
 
-    case 'UPDATE_CART':
-      return {
-        ...state,
-        cart: action.newCart
-      } 
-
       default: return state
   }
 }
+
+// on setting is added, validate the target index or stamp it, then toggle state

@@ -1,10 +1,11 @@
 {
-  "name": "Kikumba-Online",
+  "name": "kikumba-online",
   "version": "0.1.0",
   "private": true,
   "dependencies": {
     "@chec/commerce.js": "^2.4.1",
     "@craco/craco": "^6.1.1",
+    "@headlessui/react": "^1.2.0",
     "@hookform/resolvers": "^2.4.0",
     "@testing-library/jest-dom": "^5.11.10",
     "@testing-library/react": "^11.2.6",
