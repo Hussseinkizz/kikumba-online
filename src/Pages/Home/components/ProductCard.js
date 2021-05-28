@@ -29,9 +29,9 @@ const ProductCard = (props) => {
   };
 
   return (
-    <section className="w-full mx-auto overflow-hidden bg-gray-100 rounded-lg shadow-lg">
+    <section className="w-full mx-auto overflow-hidden bg-gray-100 rounded-lg shadow-lg flex flex-auto flex-col">
       <div className="px-4 py-2">
-        <h1 className="flex justify-between text-xl font-bold text-gray-800 uppercase lg:text-3xl md:text-2xl">
+        <h1 className="flex justify-between text-xl font-bold text-gray-800 uppercase md:text-2xl">
           <span>{props.productName}</span>
           <span>
             {isFav ? (
@@ -50,7 +50,7 @@ const ProductCard = (props) => {
       </div>
 
       <img
-        className="object-cover w-full h-48 mt-2"
+        className="object-fill w-full mt-2 h-72 flex flex-auto flex-grow"
         src={props.productImage}
         alt={props.productName}
       />

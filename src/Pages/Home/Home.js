@@ -7,7 +7,7 @@ import HomeUI from './HomeUI';
 const Home = ({ onAddToCart }) => {
   const { status, data, error, isFetching } = useProducts();
 
-  switch (status ?? 'loading') {
+  switch (status) {
     case 'loading':
       return <LoaderUI />;
 

@@ -18,8 +18,8 @@ import { commerce } from '../api/commerce';
 
 // creating a products fetching hook with commerce js api
 const getProducts = async () => {
-  const { data } = await commerce.products.list();
-  return data;
+  const products = await commerce.products.list();
+  return products.data;
 };
 
 export function useProducts() {
